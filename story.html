@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Story ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="story.css">
+</head>
+
+<body>
+
+<div class="hearts-container"></div>
+
+<!-- HERO CARD -->
+<section class="story-hero">
+    <div class="story-container" id="storyCard">
+        <h1>Our Story</h1>
+        <p>This page holds everything we never wanted to forget.</p>
+    </div>
+</section>
+
+<!-- POP LETTER -->
+<div class="letter-overlay" id="letterOverlay">
+    <div class="letter-card">
+        <div class="letter-content">
+
+    <h2>Hey Monu, Happy Valentine's Day 💖</h2>
+
+    <p>
+        So it's been almost <strong><em>three and a half years together</em></strong>.
+        It feels both too old and too young at the same time —
+        knowing you for almost a decade now.
+    </p>
+
+    <p>
+        We grew up together.  
+        We fought.  
+        We solved problems.  
+        And somehow, through everything,
+        we kept choosing each other.
+    </p>
+
+    <p>
+        I know this journey has been full of ups and downs,
+        and I guess that's the definition of a perfect life.
+        The most important part of this journey is that
+        we have held each other's hands firmly
+        through every rough and every smooth patch.
+    </p>
+
+    <p>
+        I hope this love continues growing like fine wine,
+        and that our glass of love never ends —
+        just like the oceans.
+    </p>
+
+    <p class="signature">
+        Shameek loves you and will continue to love you
+        till the very last breath.
+    </p>
+
+    <p class="closing">
+        Wishing you the warmest, happiest Valentine's Day, Moti 💞
+    </p>
+
+</div>
+
+    </div>
+</div>
+
+
+<!-- MEMORIES -->
+<section class="memories">
+    <h2>Moments I Hold Close</h2>
+
+    <div class="memory-grid">
+        <div class="memory-item"><img src="images/1PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/2PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/3PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/4PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/5PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/6PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/7PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/8PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/9PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/10PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/11PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/12PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/13PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/14PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/15PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/16PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/17PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/18PICT.jpeg"></div>
+        <div class="memory-item"><img src="images/19PICT.jpeg"></div>
+    </div>
+</section>
+
+<!-- MUSIC -->
+<audio id="bg-music" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ===================== */
+/* MUSIC */
+/* ===================== */
+const music = document.getElementById("bg-music");
+document.addEventListener("click", () => {
+    music.volume = 0.25;
+    music.play();
+}, { once: true });
+
+/* ===================== */
+/* POP LETTER */
+/* ===================== */
+const overlay = document.getElementById("letterOverlay");
+const storyCard = document.getElementById("storyCard");
+
+storyCard.addEventListener("click", () => {
+    overlay.classList.add("active");
+});
+
+overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+        overlay.classList.remove("active");
+    }
+});
+
+/* ===================== */
+/* SCROLL ANIMATION */
+/* ===================== */
+const items = document.querySelectorAll(".memory-item");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.2 });
+
+items.forEach(item => observer.observe(item));
+
+/* ===================== */
+/* FLOATING HEARTS */
+/* ===================== */
+const container = document.querySelector(".hearts-container");
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 6) + "s";
+    heart.style.fontSize = (16 + Math.random() * 24) + "px";
+
+    container.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 10000);
+}
+
+setInterval(createHeart, 600);
+document.addEventListener("DOMContentLoaded", function () {
+
+    const overlay = document.getElementById("letterOverlay");
+    const storyCard = document.getElementById("storyCard");
+
+    if (storyCard && overlay) {
+
+        storyCard.addEventListener("click", function () {
+            console.log("Card clicked!");
+            overlay.classList.add("active");
+        });
+
+        overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) {
+                overlay.classList.remove("active");
+            }
+        });
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
